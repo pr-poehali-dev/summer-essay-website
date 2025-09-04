@@ -3,8 +3,12 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
+import { useInView } from '@/hooks/useInView';
 
 const Index = () => {
+  const [galleryRef, galleryInView] = useInView({ threshold: 0.1 });
+  const [blogRef, blogInView] = useInView({ threshold: 0.1 });
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-accent/10">
       {/* Navigation */}
@@ -63,8 +67,8 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-500">
+          <div ref={galleryRef} className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 ${galleryInView ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}>
+            <Card className={`group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-500 ${galleryInView ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.1s' }}>
               <div className="aspect-[4/3] overflow-hidden">
                 <img 
                   src="/img/61db86b6-9d0e-41b2-ae64-194aafcc808e.jpg"
@@ -80,7 +84,7 @@ const Index = () => {
               </div>
             </Card>
 
-            <Card className="group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-500">
+            <Card className={`group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-500 ${galleryInView ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.3s' }}>
               <div className="aspect-[4/3] overflow-hidden">
                 <img 
                   src="/img/43d507cf-9caf-409a-a2c9-e6a5ce917bad.jpg"
@@ -96,7 +100,7 @@ const Index = () => {
               </div>
             </Card>
 
-            <Card className="group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-500 md:col-span-2 lg:col-span-1">
+            <Card className={`group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-500 md:col-span-2 lg:col-span-1 ${galleryInView ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.5s' }}>
               <div className="aspect-[4/3] overflow-hidden">
                 <img 
                   src="/img/8f6f51ad-26f2-4d9d-bdb4-0bb1215cebe3.jpg"
@@ -127,8 +131,8 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="space-y-8">
-            <Card className="p-8 border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+          <div ref={blogRef} className={`space-y-8 transition-all duration-1000 ${blogInView ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}>
+            <Card className={`p-8 border-0 shadow-lg hover:shadow-xl transition-all duration-300 ${blogInView ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
               <div className="flex items-start justify-between mb-4">
                 <Badge variant="outline">Литература</Badge>
                 <span className="text-sm text-muted-foreground">4 сентября 2025</span>
@@ -147,7 +151,7 @@ const Index = () => {
               </Button>
             </Card>
 
-            <Card className="p-8 border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+            <Card className={`p-8 border-0 shadow-lg hover:shadow-xl transition-all duration-300 ${blogInView ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.4s' }}>
               <div className="flex items-start justify-between mb-4">
                 <Badge variant="outline">Воспоминания</Badge>
                 <span className="text-sm text-muted-foreground">3 сентября 2025</span>
@@ -166,7 +170,7 @@ const Index = () => {
               </Button>
             </Card>
 
-            <Card className="p-8 border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+            <Card className={`p-8 border-0 shadow-lg hover:shadow-xl transition-all duration-300 ${blogInView ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.6s' }}>
               <div className="flex items-start justify-between mb-4">
                 <Badge variant="outline">Размышления</Badge>
                 <span className="text-sm text-muted-foreground">2 сентября 2025</span>
